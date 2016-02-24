@@ -6,19 +6,16 @@ public class Enemy : NetworkBehaviour
 {
     public float moveSpeed = 2f;        // The speed the enemy moves at.
     public int HP = 2;                  // How many times the enemy can be hit before it dies.
-    public GameObject hundredPointsUI;  // A prefab of 100 that appears when the enemy dies.
 
 
-    private Transform frontCheck;       // Reference to the position of the gameobject used for checking if something is in front.
     private bool dead = false;          // Whether or not the enemy is dead.
 
-
-    void Awake()
+    void Start()
     {
-        // Setting up the references.
-  //      frontCheck = transform.Find("frontCheck").transform;
+        GetComponent<Renderer>().material.color = new Color(Random.Range(0.0f,1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f)); //C#
     }
-
+   
+   
     void FixedUpdate()
     {
         // Create an array of all the colliders in front of the enemy.

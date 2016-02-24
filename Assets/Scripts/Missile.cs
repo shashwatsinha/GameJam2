@@ -6,10 +6,12 @@ public class Missile : NetworkBehaviour {
 
     public float damage = 15.0f;
     public GameObject ground;
+    public int id;
     void Start()
     {
         ground = GameObject.FindGameObjectWithTag("Ground");
         Physics2D.IgnoreCollision(GetComponent<CircleCollider2D>(), ground.GetComponent<BoxCollider2D>());
+        Debug.Log(id);
     }
 
 

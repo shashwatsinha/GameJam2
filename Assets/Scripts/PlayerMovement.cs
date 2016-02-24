@@ -12,7 +12,8 @@ public class PlayerMovement : NetworkBehaviour
     private Rigidbody2D rigidBody;
     public bool grounded;
     public float fallTimer;
-
+    //private int id;
+    
     public float speed = 0.5f;
 
     
@@ -22,14 +23,13 @@ public class PlayerMovement : NetworkBehaviour
     public GameObject missilePrefab;
     float missileLifeTime = 1.5f;
     public float jumpTimer;
-
+    
   
     public static float posX;
 
     public bool playerOrientation;
 
-    float ButtonCooler = 0.5f; // Half a second before reset
-    int ButtonCount = 0;
+   
 
     [SyncVar]
     private float health = 100;
@@ -42,6 +42,7 @@ public class PlayerMovement : NetworkBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         playerOrientation = true;
         grounded = true;
+        
 	}
 
     void Update()
@@ -50,8 +51,9 @@ public class PlayerMovement : NetworkBehaviour
         {
             return;
         }
-
        // Debug.Log(identity.playerControllerId);
+        
+        
 
         if (jumpTimer <= 0.0f)
         {
@@ -167,35 +169,17 @@ public class PlayerMovement : NetworkBehaviour
        
         GameObject missile;
         missile = (GameObject)Instantiate(missilePrefab, missileSpawnPoint.position, Quaternion.identity);
+        Missile m = missile.GetComponent<Missile>();
+        m.id = identity.netId.GetHashCode();
         Rigidbody2D rigid = missile.GetComponent<Rigidbody2D>();      
         rigid.velocity = transform.right * missileSpeed;
-      
-        Destroy(missile, lifeTime);
-       
-        NetworkServer.Spawn(missile);
+        
+        Destroy(missile, lifeTime);       
+        NetworkServer.SpawnWithClientAuthority(missile, connectionToClient);
     }
     
-    [ClientRpc]
-    public void RpcEnableCollider()
-    {
-        GetComponent<BoxCollider2D>().enabled = true;
+  
 
-    }
-
-    [ClientRpc]
-    public void RpcDisableCollider()
-    {
-        GetComponent<BoxCollider2D>().enabled = false;
-
-    }
-
-    void OnCollisionEnter2D(Collision2D col)
-    {
-
-        if (!isServer)
-            return;
-
-    }
     
 
     }
