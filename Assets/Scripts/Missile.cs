@@ -24,7 +24,14 @@ public class Missile : NetworkBehaviour {
         {
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             player.TakeDamage(damage);
-            NetworkServer.Destroy(gameObject);
+            //NetworkServer.Destroy(gameObject);
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Ground")
+        {
+           
+            Destroy(gameObject);
         }
 
         if (collision.gameObject.tag == "Enemy")
@@ -32,7 +39,8 @@ public class Missile : NetworkBehaviour {
             Enemy player = collision.gameObject.GetComponent<Enemy>();
             player.Hurt();
             Debug.Log("Hurt");
-            NetworkServer.Destroy(gameObject);
+            Destroy(gameObject);
+           // NetworkServer.Destroy(gameObject);
         }
 
 

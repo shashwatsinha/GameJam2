@@ -12,16 +12,15 @@ public class Enemy : NetworkBehaviour
 
     void Start()
     {
-        GetComponent<Renderer>().material.color = new Color(Random.Range(0.0f,1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f)); //C#
+        GetComponent<Renderer>().material.color = new Color(1.0f, 0.0f, 0.0f); //C#
     }
    
    
     void FixedUpdate()
     {
-        // Create an array of all the colliders in front of the enemy.
-     //   Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
+        if (!isServer)
+            return;
 
-    
 
         // Set the enemy's velocity to moveSpeed in the x direction.
         GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x * moveSpeed, GetComponent<Rigidbody2D>().velocity.y);
@@ -70,6 +69,14 @@ public class Enemy : NetworkBehaviour
 
         if (collision.gameObject.tag == "Enemy")
         {
+            Flip();
+        }
+
+        if (collision.gameObject.tag == "Player")
+        {
+            PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
+            player.TakeDamage(15.0f);
+            //NetworkServer.Destroy(gameObject);
             Flip();
         }
 
