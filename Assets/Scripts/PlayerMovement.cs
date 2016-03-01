@@ -13,18 +13,23 @@ public class PlayerMovement : NetworkBehaviour
     public bool grounded;
     public float fallTimer;
     //private int id;
-    
+    public int weaponType;
+    bool allowFire;
     public float speed = 0.5f;
 
-    
+    public float weaponTimer;
 
+    private bool upPressed;
     public Transform missileSpawnPoint;
+    public Transform missileSpawnPoint1;
+    public Transform missileSpawnPoint2;
     public float missileSpeed = 50;
     public GameObject missilePrefab;
     float missileLifeTime = 1.5f;
     public float jumpTimer;
-    
-  
+
+    private Vector3 shootPos;
+
     public static float posX;
 
     public bool playerOrientation;
@@ -40,9 +45,11 @@ public class PlayerMovement : NetworkBehaviour
     {
         identity = GetComponent<NetworkIdentity>();
         rigidBody = GetComponent<Rigidbody2D>();
+        upPressed = false;
         playerOrientation = true;
         grounded = true;
-        
+        weaponTimer = 10.0f;
+        shootPos = new Vector3(1, 0, 0);
 	}
 
     void Update()
@@ -51,61 +58,20 @@ public class PlayerMovement : NetworkBehaviour
         {
             return;
         }
-       // Debug.Log(identity.playerControllerId);
-        
-        
 
-        if (jumpTimer <= 0.0f)
-        {
-            jumpTimer = 0.0f;
-        }
-        if (jumpTimer > 0.0f)
-        {
-            jumpTimer -= Time.deltaTime;
-        }
+        CmdTimer();
 
-        if (Input.GetKeyDown(KeyCode.W) && jumpTimer == 0.0f)
-        {
-
-            GetComponent<Rigidbody2D>().AddForce(Vector3.up * 5000.0f);
-            jumpTimer = 1.0f;
-
-        }
-
-     /*   else if (Input.GetKeyDown(KeyCode.S) && fallTimer == 0.0f)
-        {
-
-            if (ButtonCooler > 0 && ButtonCount == 1 )
-            {
-
-                // GetComponent<BoxCollider2D>().enabled = false;
-                RpcDisableCollider();
-                fallTimer = 0.6f;
-            }
-            else
-            {
-                ButtonCooler = 0.5f;
-                ButtonCount += 1;
-            }
-        }
-    */
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            CmdDoFire(missileLifeTime);
-        }
-
-        posX = transform.position.x;
         if (Input.GetKey(KeyCode.D))
         {
-            // transform.Translate(Vector3.right * speed);
-            // GetComponent<Rigidbody2D>().AddForce(Vector3.right * speed);
+
             transform.position = new Vector3(
-          transform.position.x + (5f * Time.deltaTime),
-          transform.position.y,
-          transform.position.z
-      );
+            transform.position.x + (5f * Time.deltaTime),
+            transform.position.y,
+            transform.position.z
+        );
 
             playerOrientation = true;
+            CmdDirection(0);
         }
 
         else if (Input.GetKey(KeyCode.A))
@@ -113,14 +79,36 @@ public class PlayerMovement : NetworkBehaviour
             //transform.Translate(Vector3.right * speed);
             // GetComponent<Rigidbody2D>().AddForce(Vector3.right * -speed);
             transform.position = new Vector3(
-           transform.position.x - (5f * Time.deltaTime),
-           transform.position.y,
-           transform.position.z);
-             playerOrientation = false;
+            transform.position.x - (5f * Time.deltaTime),
+            transform.position.y,
+            transform.position.z);
+            playerOrientation = false;
+            CmdDirection(1);
         }
 
+       
+        Debug.Log(weaponTimer);
+
+       
+        if (Input.GetKeyDown(KeyCode.W) && jumpTimer == 0.0f)
+        {
+
+            GetComponent<Rigidbody2D>().AddForce(Vector3.up * 4200.0f);
+            jumpTimer = 1.0f;
+        }
+
+        
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            CmdDoFire(missileLifeTime);
+        }
+
+        posX = transform.position.x;
+        
 
 
+        
 
 
         if (playerOrientation == true)
@@ -132,19 +120,55 @@ public class PlayerMovement : NetworkBehaviour
         {
             transform.eulerAngles = new Vector3(0.0f, 0.0f, 180.0f);
         }
+
+        if (jumpTimer <= 0.0f)
+        {
+            jumpTimer = 0.0f;
+        }
+        if (jumpTimer > 0.0f)
+        {
+            jumpTimer -= Time.deltaTime;
+        }
+
     }
 	
 	
 
-
-   
-
-    [ClientRpc]
-    void RpcDamage(float amount)
+    [Command]
+    void CmdDirection(float direction)
     {
-     //   Debug.Log("Took damage:" + amount);
+        if (direction == 0)
+            shootPos = new Vector3(1, 0, 0);
 
-        //update local GUI here
+        if (direction == 1)
+            shootPos = new Vector3(-1, 0, 0);
+
+
+    }
+
+    [Command]
+    void CmdTimer()
+    {
+        if (weaponTimer <= 0.0f)
+        {
+            weaponTimer = 0.0f;
+        }
+        else if (weaponTimer < 10.0f && weaponTimer > 0.0f)
+        {
+            weaponTimer -= Time.deltaTime;
+        }
+
+       
+
+
+    }
+
+    public void Heal()
+    {
+        if (!isServer)
+            return;
+
+        health = health + 5;
     }
 
     public void TakeDamage(float damage)
@@ -160,25 +184,66 @@ public class PlayerMovement : NetworkBehaviour
             NetworkServer.Destroy(gameObject);
         }
 
-        RpcDamage(damage);
+        
     }
-
+   
     [Command]
     public void CmdDoFire(float lifeTime)
     {
-       
-        GameObject missile;
-        missile = (GameObject)Instantiate(missilePrefab, missileSpawnPoint.position, Quaternion.identity);
-        Missile m = missile.GetComponent<Missile>();
-        m.id = identity.netId.GetHashCode();
-        Rigidbody2D rigid = missile.GetComponent<Rigidbody2D>();      
-        rigid.velocity = transform.right * missileSpeed;
         
-        Destroy(missile, lifeTime);       
-        NetworkServer.SpawnWithClientAuthority(missile, connectionToClient);
+
+        if (weaponType == 0)
+        {
+            GameObject missile;
+            missile = (GameObject)Instantiate(missilePrefab, missileSpawnPoint.position, Quaternion.identity);
+            Missile m = missile.GetComponent<Missile>();
+            Rigidbody2D rigid = missile.GetComponent<Rigidbody2D>();
+
+                rigid.velocity = shootPos * missileSpeed;
+         
+            Destroy(missile, lifeTime);
+            NetworkServer.Spawn(missile);
+        }
+        
+
+        else if(weaponType == 1)
+        {
+            if (weaponTimer > 0.0f)
+            {
+                GameObject[] missile = new GameObject[3];
+                for (int i = 0; i < 3; i++)
+                {
+                    if (i == 0)
+                        missile[i] = (GameObject)Instantiate(missilePrefab, missileSpawnPoint.position, Quaternion.identity);
+                    if (i == 1)
+                        missile[i] = (GameObject)Instantiate(missilePrefab, missileSpawnPoint1.position, Quaternion.identity);
+                    if (i == 2)
+                        missile[i] = (GameObject)Instantiate(missilePrefab, missileSpawnPoint2.position, Quaternion.identity);
+                    Missile m = missile[i].GetComponent<Missile>();
+                    Rigidbody2D rigid = missile[i].GetComponent<Rigidbody2D>();
+
+                   
+                    rigid.velocity = shootPos * missileSpeed;
+
+                    Destroy(missile[i], lifeTime);
+                    NetworkServer.Spawn(missile[i]);
+                }
+            }
+            else
+                weaponType = 0;
+        }
+
     }
     
-  
+    void OnGUI()
+    {
+        if (!identity.isLocalPlayer)
+        {
+            return;
+        }
+
+        GUI.Label(new Rect(100, 100, 100, 100), health.ToString());
+    }
 
     
 

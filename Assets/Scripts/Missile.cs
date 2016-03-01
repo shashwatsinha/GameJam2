@@ -10,8 +10,8 @@ public class Missile : NetworkBehaviour {
     void Start()
     {
         ground = GameObject.FindGameObjectWithTag("Ground");
-        Physics2D.IgnoreCollision(GetComponent<CircleCollider2D>(), ground.GetComponent<BoxCollider2D>());
-        Debug.Log(id);
+        Physics2D.IgnoreCollision(GetComponent<Collider2D>(), ground.GetComponent<Collider2D>());
+      //  Debug.Log(id);
     }
 
 
@@ -31,14 +31,32 @@ public class Missile : NetworkBehaviour {
         if (collision.gameObject.tag == "Ground")
         {
            
+        //    Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Wall")
+        {
+
+            Destroy(gameObject);
+        }
+
+
+        if (collision.gameObject.tag == "Gift")
+        {
+
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.tag == "Missile")
+        {
+            Destroy(collision.gameObject);
             Destroy(gameObject);
         }
 
         if (collision.gameObject.tag == "Enemy")
         {
-            Enemy player = collision.gameObject.GetComponent<Enemy>();
-            player.Hurt();
-            Debug.Log("Hurt");
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            enemy.Hurt();
             Destroy(gameObject);
            // NetworkServer.Destroy(gameObject);
         }

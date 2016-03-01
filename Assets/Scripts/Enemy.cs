@@ -6,7 +6,7 @@ public class Enemy : NetworkBehaviour
 {
     public float moveSpeed = 2f;        // The speed the enemy moves at.
     public int HP = 2;                  // How many times the enemy can be hit before it dies.
-
+    public GameObject giftPackage;
 
     private bool dead = false;          // Whether or not the enemy is dead.
 
@@ -30,7 +30,7 @@ public class Enemy : NetworkBehaviour
         // If the enemy has zero or fewer hit points and isn't dead yet...
         if (HP <= 0 && !dead)
             // ... call the death function.
-            Death();
+            CmdDeath();
     }
 
     public void Hurt()
@@ -39,15 +39,22 @@ public class Enemy : NetworkBehaviour
         HP--;
     }
 
-    void Death()
+    public void GainHealth()
     {
-       
-
+        // Reduce the number of hit points by one.
+        HP = HP + 3; 
         
+    }
+    [Command]
+    void CmdDeath()
+    {
 
         // Set dead to true.
         dead = true;
+        Spawner.enemyCount--;
 
+        GameObject gift= (GameObject)Instantiate(giftPackage, transform.position, transform.rotation);
+        NetworkServer.Spawn(gift);
         Destroy(gameObject);
     }
 
@@ -64,10 +71,19 @@ public class Enemy : NetworkBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            Flip();
+            int k = Random.Range(0, 3);
+            if (k == 2)
+            {
+                Flip();
+            }
         }
 
         if (collision.gameObject.tag == "Enemy")
+        {
+            Flip();
+        }
+
+        if (collision.gameObject.tag == "Wall")
         {
             Flip();
         }
@@ -80,13 +96,13 @@ public class Enemy : NetworkBehaviour
             Flip();
         }
 
-        if (collision.gameObject.tag == "Missile")
-        {
+    //    if (collision.gameObject.tag == "Missile")
+    //    {
           //  Enemy player = collision.gameObject.GetComponent<Enemy>();
-            Hurt();
+      //      Hurt();
             //  Debug.Log("Hurt");
-            NetworkServer.Destroy(collision.gameObject);
-        }
+        //    NetworkServer.Destroy(collision.gameObject);
+    //    }
 
     }
 
