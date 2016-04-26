@@ -25,6 +25,7 @@ public class PlayerMovement : NetworkBehaviour
     public Transform missileSpawnPoint2;
     public float missileSpeed = 50;
     public GameObject missilePrefab;
+    public GameObject healEffect;
     float missileLifeTime = 1.5f;
     public float jumpTimer;
 
@@ -161,6 +162,21 @@ public class PlayerMovement : NetworkBehaviour
        
 
 
+    }
+
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "HealthBox")
+        {
+            Destroy(collider.gameObject);
+            Heal();
+
+            GameObject heal;
+            heal = (GameObject)Instantiate(healEffect, transform.position, Quaternion.identity);
+            heal.transform.parent = transform;
+
+            Destroy(heal, 1);
+        }
     }
 
     public void Heal()
