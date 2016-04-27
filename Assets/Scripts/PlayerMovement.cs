@@ -10,16 +10,12 @@ public class PlayerMovement : NetworkBehaviour
 {
     private NetworkIdentity identity;
     private Rigidbody2D rigidBody;
+
     public bool grounded;
-    public float fallTimer;
-    //private int id;
     public int weaponType;
     bool allowFire;
     public float speed = 0.5f;
-
     public float weaponTimer;
-
-    private bool upPressed;
     public Transform missileSpawnPoint;
     public Transform missileSpawnPoint1;
     public Transform missileSpawnPoint2;
@@ -27,15 +23,9 @@ public class PlayerMovement : NetworkBehaviour
     public GameObject missilePrefab;
     public GameObject healEffect;
     float missileLifeTime = 1.5f;
-    public float jumpTimer;
-
     private Vector3 shootPos;
-
     public static float posX;
-
     public bool playerOrientation;
-
-   
 
     [SyncVar]
     private float health = 100;
@@ -46,7 +36,6 @@ public class PlayerMovement : NetworkBehaviour
     {
         identity = GetComponent<NetworkIdentity>();
         rigidBody = GetComponent<Rigidbody2D>();
-        upPressed = false;
         playerOrientation = true;
         grounded = true;
         weaponTimer = 10.0f;
@@ -64,41 +53,25 @@ public class PlayerMovement : NetworkBehaviour
 
         if (Input.GetKey(KeyCode.D))
         {
-
-            transform.position = new Vector3(
-            transform.position.x + (5f * Time.deltaTime),
-            transform.position.y,
-            transform.position.z
-        );
-
+            transform.position = new Vector3(transform.position.x + (5f * Time.deltaTime),transform.position.y,transform.position.z);
             playerOrientation = true;
             CmdDirection(0);
         }
 
         else if (Input.GetKey(KeyCode.A))
         {
-            //transform.Translate(Vector3.right * speed);
-            // GetComponent<Rigidbody2D>().AddForce(Vector3.right * -speed);
-            transform.position = new Vector3(
-            transform.position.x - (5f * Time.deltaTime),
-            transform.position.y,
-            transform.position.z);
+            transform.position = new Vector3(transform.position.x - (5f * Time.deltaTime),transform.position.y,transform.position.z);
             playerOrientation = false;
             CmdDirection(1);
         }
-
        
-        Debug.Log(weaponTimer);
-
+        //Debug.Log(weaponTimer);
        
-        if (Input.GetKeyDown(KeyCode.W) && jumpTimer == 0.0f)
+        if (Input.GetKeyDown(KeyCode.W) && grounded == true)
         {
-
             GetComponent<Rigidbody2D>().AddForce(Vector3.up * 4200.0f);
-            jumpTimer = 1.0f;
+            grounded = false;
         }
-
-        
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -106,11 +79,6 @@ public class PlayerMovement : NetworkBehaviour
         }
 
         posX = transform.position.x;
-        
-
-
-        
-
 
         if (playerOrientation == true)
         {
@@ -121,19 +89,17 @@ public class PlayerMovement : NetworkBehaviour
         {
             transform.eulerAngles = new Vector3(0.0f, 0.0f, 180.0f);
         }
+    }
 
-        if (jumpTimer <= 0.0f)
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == "Ground")
         {
-            jumpTimer = 0.0f;
-        }
-        if (jumpTimer > 0.0f)
-        {
-            jumpTimer -= Time.deltaTime;
+            grounded = true;
+            Debug.Log("Grounded = "+grounded);
         }
 
     }
-	
-	
 
     [Command]
     void CmdDirection(float direction)
@@ -143,8 +109,6 @@ public class PlayerMovement : NetworkBehaviour
 
         if (direction == 1)
             shootPos = new Vector3(-1, 0, 0);
-
-
     }
 
     [Command]
@@ -158,10 +122,6 @@ public class PlayerMovement : NetworkBehaviour
         {
             weaponTimer -= Time.deltaTime;
         }
-
-       
-
-
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -199,29 +159,21 @@ public class PlayerMovement : NetworkBehaviour
             health = 0;
             NetworkServer.Destroy(gameObject);
         }
-
-        
     }
    
     [Command]
     public void CmdDoFire(float lifeTime)
     {
-        
-
         if (weaponType == 0)
         {
             GameObject missile;
             missile = (GameObject)Instantiate(missilePrefab, missileSpawnPoint.position, Quaternion.identity);
             Missile m = missile.GetComponent<Missile>();
             Rigidbody2D rigid = missile.GetComponent<Rigidbody2D>();
-
-                rigid.velocity = shootPos * missileSpeed;
-         
+            rigid.velocity = shootPos * missileSpeed;
             Destroy(missile, lifeTime);
             NetworkServer.Spawn(missile);
         }
-        
-
         else if(weaponType == 1)
         {
             if (weaponTimer > 0.0f)
@@ -237,10 +189,7 @@ public class PlayerMovement : NetworkBehaviour
                         missile[i] = (GameObject)Instantiate(missilePrefab, missileSpawnPoint2.position, Quaternion.identity);
                     Missile m = missile[i].GetComponent<Missile>();
                     Rigidbody2D rigid = missile[i].GetComponent<Rigidbody2D>();
-
-                   
                     rigid.velocity = shootPos * missileSpeed;
-
                     Destroy(missile[i], lifeTime);
                     NetworkServer.Spawn(missile[i]);
                 }
@@ -248,7 +197,6 @@ public class PlayerMovement : NetworkBehaviour
             else
                 weaponType = 0;
         }
-
     }
     
     void OnGUI()
@@ -260,7 +208,4 @@ public class PlayerMovement : NetworkBehaviour
 
         GUI.Label(new Rect(100, 100, 100, 100), health.ToString());
     }
-
-    
-
-    }
+}
