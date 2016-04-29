@@ -25,6 +25,7 @@ public class PlayerMovement : NetworkBehaviour
     float missileLifeTime = 1.5f;
     private Vector3 shootPos;
     public static float posX;
+    public static int directionFacing=2;
     public bool playerOrientation;
 
     [SyncVar]
@@ -55,14 +56,19 @@ public class PlayerMovement : NetworkBehaviour
         {
             transform.position = new Vector3(transform.position.x + (5f * Time.deltaTime),transform.position.y,transform.position.z);
             playerOrientation = true;
+            directionFacing = 0;
             CmdDirection(0);
         }
-
         else if (Input.GetKey(KeyCode.A))
         {
             transform.position = new Vector3(transform.position.x - (5f * Time.deltaTime),transform.position.y,transform.position.z);
             playerOrientation = false;
+            directionFacing = 1;
             CmdDirection(1);
+        }
+        else
+        {
+            directionFacing = 2;
         }
        
         //Debug.Log(weaponTimer);
