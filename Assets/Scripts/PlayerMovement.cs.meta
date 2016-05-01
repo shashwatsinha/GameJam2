@@ -1,10 +1,17 @@
 fileFormatVersion: 2
 guid: 722cf907f14ca7d46a0cd3d6bc520683
-timeCreated: 1455863005
+timeCreated: 1462137684
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - missileSpawnPoint: {instanceID: 0}
+  - missileSpawnPoint1: {instanceID: 0}
+  - missileSpawnPoint2: {instanceID: 0}
+  - missilePrefab: {instanceID: 0}
+  - healEffect: {instanceID: 0}
+  - BulletSound: {fileID: 153972, guid: b4e548dfe12d99049b5b0c6c006bf284, type: 2}
+  - JumpSound: {fileID: 126470, guid: 30684b37ec5c0084a8fcdf20c9a7aed3, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

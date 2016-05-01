@@ -27,6 +27,8 @@ public class PlayerMovement : NetworkBehaviour
     public static float posX;
     public static int directionFacing=2;
     public bool playerOrientation;
+    public GameObject BulletSound;
+    public GameObject JumpSound;
 
     [SyncVar]
     private float health = 100;
@@ -76,11 +78,15 @@ public class PlayerMovement : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.W) && grounded == true)
         {
             GetComponent<Rigidbody2D>().AddForce(Vector3.up * 4200.0f);
+            GameObject jumpSound = Instantiate (JumpSound, this.transform.position, this.transform.rotation) as GameObject;
             grounded = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+
+            GameObject bulletSound = Instantiate(BulletSound, this.transform.position, this.transform.rotation) as GameObject;
+
             CmdDoFire(missileLifeTime);
         }
 
