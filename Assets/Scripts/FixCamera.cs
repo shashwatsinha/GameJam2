@@ -6,8 +6,8 @@ public class FixCamera : MonoBehaviour
 
     public float dampTime = 0.1f;
     private Vector3 velocity = Vector3.zero;
-    private Vector3 playerPosition;
     private Vector3 newPosition;
+    private int directionFacingBefore = 2;
 
     // Update is called once per frame
     void Update()
@@ -15,24 +15,33 @@ public class FixCamera : MonoBehaviour
         int directionFacing = PlayerMovement.directionFacing;
         if (directionFacing == 0)
         {
+            directionFacingBefore = directionFacing;
             newPosition = new Vector3(PlayerMovement.posX + 3, transform.position.y, -10);
             transform.position = Vector3.Lerp(transform.position, newPosition, dampTime);
         }
-        else if(directionFacing == 1)
+        else if (directionFacing == 1)
         {
-            //playerPosition = new Vector3(PlayerMovement.posX - 1, transform.position.y, -10);
+            directionFacingBefore = directionFacing;
             newPosition = new Vector3(PlayerMovement.posX - 3, transform.position.y, -10);
             transform.position = Vector3.Lerp(transform.position, newPosition, dampTime);
         }
-        else if(directionFacing == 2)
+        else if (directionFacing == 2)
         {
-            playerPosition = new Vector3(PlayerMovement.posX, transform.position.y, -10);
-            transform.position = Vector3.Lerp(transform.position, playerPosition, dampTime*0.6f);
+            if (directionFacingBefore == 0)
+            {
+                newPosition = new Vector3(PlayerMovement.posX + 2, transform.position.y, -10);
+                transform.position = Vector3.Lerp(transform.position, newPosition, dampTime);
+            }
+            else if (directionFacingBefore == 1)
+            {
+                newPosition = new Vector3(PlayerMovement.posX - 2, transform.position.y, -10);
+                transform.position = Vector3.Lerp(transform.position, newPosition, dampTime);
+            }
+            else if (directionFacingBefore == 2)
+            {
+                newPosition = new Vector3(PlayerMovement.posX, transform.position.y, -10);
+                transform.position = Vector3.Lerp(transform.position, newPosition, dampTime);
+            }
         }
-        //playerPosition = new Vector3(PlayerMovement.posX, transform.position.y,-10);
-        //transform.position = Vector3.Lerp(transform.position, playerPosition, dampTime);
-
     }
-
-    
 }

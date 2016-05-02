@@ -11,6 +11,7 @@ public class PlayerMovement : NetworkBehaviour
     private NetworkIdentity identity;
     private Rigidbody2D rigidBody;
 
+    public GameObject groundCheck;
     public bool grounded;
     public int weaponType;
     bool allowFire;
@@ -27,6 +28,9 @@ public class PlayerMovement : NetworkBehaviour
     public static float posX;
     public static int directionFacing=2;
     public bool playerOrientation;
+    private int directionFacingBefore = 0;
+    private RaycastHit2D hit;
+    private Transform platformCollisionIgnored;
     public GameObject BulletSound;
     public GameObject JumpSound;
 
@@ -59,6 +63,7 @@ public class PlayerMovement : NetworkBehaviour
             transform.position = new Vector3(transform.position.x + (5f * Time.deltaTime),transform.position.y,transform.position.z);
             playerOrientation = true;
             directionFacing = 0;
+            directionFacingBefore = directionFacing;
             CmdDirection(0);
         }
         else if (Input.GetKey(KeyCode.A))
@@ -66,7 +71,22 @@ public class PlayerMovement : NetworkBehaviour
             transform.position = new Vector3(transform.position.x - (5f * Time.deltaTime),transform.position.y,transform.position.z);
             playerOrientation = false;
             directionFacing = 1;
+            directionFacingBefore = directionFacing;
             CmdDirection(1);
+        }
+        else if (Input.GetKey(KeyCode.S))
+        {
+            if (platformCollisionIgnored != null)
+                Physics2D.IgnoreCollision(platformCollisionIgnored.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false);
+
+            Vector3 pos = new Vector3(0, 0, 0);
+            if (directionFacingBefore == 0)
+                pos = new Vector3(groundCheck.transform.position.x, groundCheck.transform.position.y, 0);
+            else if (directionFacingBefore == 1)
+                pos = new Vector3(groundCheck.transform.position.x, -groundCheck.transform.position.y, 0);
+            hit = Physics2D.Linecast(transform.position, pos, 1 << LayerMask.NameToLayer("Ground"));
+            platformCollisionIgnored = hit.transform;
+            Physics2D.IgnoreCollision(hit.transform.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
         else
         {
@@ -77,6 +97,8 @@ public class PlayerMovement : NetworkBehaviour
        
         if (Input.GetKeyDown(KeyCode.W) && grounded == true)
         {
+            if (platformCollisionIgnored != null)
+                Physics2D.IgnoreCollision(platformCollisionIgnored.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false);
             GetComponent<Rigidbody2D>().AddForce(Vector3.up * 4200.0f);
             GameObject jumpSound = Instantiate (JumpSound, this.transform.position, this.transform.rotation) as GameObject;
             grounded = false;
