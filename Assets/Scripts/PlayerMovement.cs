@@ -110,8 +110,11 @@ public class PlayerMovement : NetworkBehaviour
             else if (directionFacingBefore == 1)
                 pos = new Vector3(groundCheck.transform.position.x, -groundCheck.transform.position.y, 0);
             hit = Physics2D.Linecast(transform.position, pos, 1 << LayerMask.NameToLayer("Ground"));
-            platformCollisionIgnored = hit.transform;
-            Physics2D.IgnoreCollision(hit.transform.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            if (hit)
+            {
+                platformCollisionIgnored = hit.transform;
+                Physics2D.IgnoreCollision(hit.transform.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            }
         }
 
         posX = transform.position.x;
