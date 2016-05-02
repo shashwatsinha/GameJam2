@@ -6,22 +6,22 @@ Direct3D:
     Vendor:   NVIDIA
     VRAM:     1995 MB
 Begin MonoManager ReloadAssembly
-Platform assembly: D:\Unity Projects\2DMultiplayerShooter\05_01\2DMultiplayerShooter\MainGame_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading D:\Unity Projects\2DMultiplayerShooter\05_01\2DMultiplayerShooter\MainGame_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: D:\Unity Projects\2DMultiplayerShooter\05_01\2DMultiplayerShooter\MainGame_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading D:\Unity Projects\2DMultiplayerShooter\05_01\2DMultiplayerShooter\MainGame_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: D:\Unity Projects\2DMultiplayerShooter\05_01\2DMultiplayerShooter\MainGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading D:\Unity Projects\2DMultiplayerShooter\05_01\2DMultiplayerShooter\MainGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: D:\Unity Projects\2DMultiplayerShooter\05_01\2DMultiplayerShooter\MainGame_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading D:\Unity Projects\2DMultiplayerShooter\05_01\2DMultiplayerShooter\MainGame_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.040 seconds
-Platform assembly: D:\Unity Projects\2DMultiplayerShooter\05_01\2DMultiplayerShooter\MainGame_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: D:\Unity Projects\2DMultiplayerShooter\05_01\2DMultiplayerShooter\MainGame_Data\Managed\System.dll (this message is harmless)
+Platform assembly: D:\Unity Projects\2DMultiplayerShooter\05_02\2DMultiplayerShooter\MainGame_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Unity Projects\2DMultiplayerShooter\05_02\2DMultiplayerShooter\MainGame_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Unity Projects\2DMultiplayerShooter\05_02\2DMultiplayerShooter\MainGame_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Unity Projects\2DMultiplayerShooter\05_02\2DMultiplayerShooter\MainGame_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Unity Projects\2DMultiplayerShooter\05_02\2DMultiplayerShooter\MainGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Unity Projects\2DMultiplayerShooter\05_02\2DMultiplayerShooter\MainGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Unity Projects\2DMultiplayerShooter\05_02\2DMultiplayerShooter\MainGame_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\Unity Projects\2DMultiplayerShooter\05_02\2DMultiplayerShooter\MainGame_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.091 seconds
+Platform assembly: D:\Unity Projects\2DMultiplayerShooter\05_02\2DMultiplayerShooter\MainGame_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\Unity Projects\2DMultiplayerShooter\05_02\2DMultiplayerShooter\MainGame_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.644713 ms
+UnloadTime: 0.685768 ms
 Grounded = True
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
@@ -54,119 +54,6 @@ Grounded = True
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
 
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Grounded = True
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
-
-Log: connection {1} has been disconnected by timeout; address {::ffff:127.0.0.1:7777}
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 3b80 -> priority: 1 
-  Thread -> id: 3a8 -> priority: 1 
+  Thread -> id: 16c4 -> priority: 1 
+  Thread -> id: 2f58 -> priority: 1 

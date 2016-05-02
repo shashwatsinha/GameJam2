@@ -26,6 +26,7 @@ public class PlayerMovement : NetworkBehaviour
     float missileLifeTime = 1.5f;
     private Vector3 shootPos;
     public static float posX;
+    public static float posY;
     public static int directionFacing=2;
     public bool playerOrientation;
     private int directionFacingBefore = 0;
@@ -74,20 +75,6 @@ public class PlayerMovement : NetworkBehaviour
             directionFacingBefore = directionFacing;
             CmdDirection(1);
         }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            if (platformCollisionIgnored != null)
-                Physics2D.IgnoreCollision(platformCollisionIgnored.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false);
-
-            Vector3 pos = new Vector3(0, 0, 0);
-            if (directionFacingBefore == 0)
-                pos = new Vector3(groundCheck.transform.position.x, groundCheck.transform.position.y, 0);
-            else if (directionFacingBefore == 1)
-                pos = new Vector3(groundCheck.transform.position.x, -groundCheck.transform.position.y, 0);
-            hit = Physics2D.Linecast(transform.position, pos, 1 << LayerMask.NameToLayer("Ground"));
-            platformCollisionIgnored = hit.transform;
-            Physics2D.IgnoreCollision(hit.transform.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        }
         else
         {
             directionFacing = 2;
@@ -112,7 +99,23 @@ public class PlayerMovement : NetworkBehaviour
             CmdDoFire(missileLifeTime);
         }
 
+        if (Input.GetKey(KeyCode.S))
+        {
+            if (platformCollisionIgnored != null)
+                Physics2D.IgnoreCollision(platformCollisionIgnored.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false);
+
+            Vector3 pos = new Vector3(0, 0, 0);
+            if (directionFacingBefore == 0)
+                pos = new Vector3(groundCheck.transform.position.x, groundCheck.transform.position.y, 0);
+            else if (directionFacingBefore == 1)
+                pos = new Vector3(groundCheck.transform.position.x, -groundCheck.transform.position.y, 0);
+            hit = Physics2D.Linecast(transform.position, pos, 1 << LayerMask.NameToLayer("Ground"));
+            platformCollisionIgnored = hit.transform;
+            Physics2D.IgnoreCollision(hit.transform.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
+
         posX = transform.position.x;
+        posY = transform.position.y;
 
         if (playerOrientation == true)
         {
@@ -162,9 +165,6 @@ public class PlayerMovement : NetworkBehaviour
     {
         if (collider.gameObject.tag == "HealthBox")
         {
-            Destroy(collider.gameObject);
-            Heal();
-
             GameObject heal;
             heal = (GameObject)Instantiate(healEffect, transform.position, Quaternion.identity);
             heal.transform.parent = transform;
@@ -173,12 +173,36 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
 
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "HealthBox")
+        {
+            GameObject heal;
+            heal = (GameObject)Instantiate(healEffect, transform.position, Quaternion.identity);
+            heal.transform.parent = transform;
+
+            Destroy(heal, 1);
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "HealthBox")
+        {
+            Heal();
+        }
+    }
+
     public void Heal()
     {
         if (!isServer)
             return;
-
-        health = health + 5;
+        if(health < 100)
+        {
+            health = health + 1;
+            if (health > 100)
+                health = 100;
+        }
     }
 
     public void TakeDamage(float damage)
