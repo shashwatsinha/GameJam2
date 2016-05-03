@@ -1,0 +1,796 @@
+fileFormatVersion: 2
+guid: 309ac3eb4cc441349b63128366ca98b6
+timeCreated: 1462237188
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: OT Bullet 1
+    21300002: OT Bullet 2
+    21300004: OT Bullet 3
+    21300006: OT Bullet 4
+    21300008: OT Bullet 5
+    21300010: OT Bullet 6
+    21300012: OT Bullet 7
+    21300014: OT Bullet 8
+    21300016: OT Bullet 9
+    21300018: OT Bullet 10
+    21300020: OT Handgrenade 1
+    21300022: OT Handgrenade 2
+    21300024: OT Tank 1
+    21300026: OT Handgrenade 3
+    21300028: OT Handgrenade 4
+    21300030: OT Handgrenade 5
+    21300032: OT Handgrenade 6
+    21300034: OT Handgrenade 7
+    21300036: OT Handgrenade 8
+    21300038: OT Handgrenade 9
+    21300040: OT Tank 2
+    21300042: OT Jet 1
+    21300044: OT Jet 2
+    21300046: OT Explosive
+    21300048: OT Explosive remote
+    21300050: OT Healthpack
+    21300052: OT Health
+    21300054: Orange theme spritesheet 1_0
+    21300056: Orange theme spritesheet 1_1
+    21300058: Orange theme spritesheet 1_2
+    21300060: Orange theme spritesheet 1_3
+    21300062: Orange theme spritesheet 1_4
+    21300064: Orange theme spritesheet 1_5
+    21300066: Orange theme spritesheet 1_6
+    21300068: Orange theme spritesheet 1_7
+    21300070: Orange theme spritesheet 1_8
+    21300072: Orange theme spritesheet 1_9
+    21300074: Orange theme spritesheet 1_10
+    21300076: Orange theme spritesheet 1_11
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: Web
+    maxTextureSize: 2048
+    textureFormat: -1
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
+  spriteSheet:
+    sprites:
+    - name: OT Bullet 1
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 3734
+        width: 164
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16.25, y: 51.25}
+        - {x: -21.25, y: 48.25}
+        - {x: -22.25, y: 33.25}
+        - {x: -22.25, y: -50.75}
+        - {x: 23.75, y: -50.75}
+        - {x: 23.75, y: 39.25}
+        - {x: 18.75, y: 51.25}
+    - name: OT Bullet 2
+      rect:
+        serializedVersion: 2
+        x: 254
+        y: 3762
+        width: 172
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 18.75, y: 52.25}
+        - {x: -19.25, y: 52.25}
+        - {x: -22.25, y: 49.25}
+        - {x: -23.25, y: 37.25}
+        - {x: -23.25, y: -51.75}
+        - {x: 24.75, y: -51.75}
+        - {x: 24.75, y: 30.25}
+        - {x: 19.75, y: 51.25}
+    - name: OT Bullet 3
+      rect:
+        serializedVersion: 2
+        x: 474
+        y: 3862
+        width: 164
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 18.25, y: 63.25}
+        - {x: 17.25, y: 65.25}
+        - {x: -19.75, y: 65.25}
+        - {x: -22.75, y: 55.25}
+        - {x: -22.75, y: -64.75}
+        - {x: 23.25, y: -64.75}
+        - {x: 23.25, y: 37.25}
+    - name: OT Bullet 4
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 3450
+        width: 184
+        height: 564
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18, y: 71.5}
+        - {x: -23, y: 52.5}
+        - {x: -23, y: -70.5}
+        - {x: 24, y: -70.5}
+        - {x: 24, y: 51.5}
+        - {x: 18, y: 71.5}
+    - name: OT Bullet 5
+      rect:
+        serializedVersion: 2
+        x: 894
+        y: 3914
+        width: 200
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23.75, y: -63.75}
+        - {x: 25.75, y: -63.75}
+        - {x: 27.75, y: -62.75}
+        - {x: 27.75, y: 72.25}
+        - {x: -21.25, y: 72.25}
+        - {x: -26.25, y: 50.25}
+        - {x: -26.25, y: -71.75}
+        - {x: 27.75, y: -71.75}
+        - {x: 27.75, y: -64.75}
+        - {x: 26.75, y: -63.75}
+    - name: OT Bullet 6
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 3082
+        width: 96
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -2.25, y: 123.75}
+        - {x: -11.25, y: 101.75}
+        - {x: -20.25, y: 32.75}
+        - {x: -20.25, y: -123.25}
+        - {x: 21.75, y: -123.25}
+        - {x: 21.75, y: 41.75}
+        - {x: 19.75, y: 80.75}
+        - {x: 6.75, y: 123.75}
+    - name: OT Bullet 7
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 2422
+        width: 108
+        height: 628
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: OT Bullet 8
+      rect:
+        serializedVersion: 2
+        x: 378
+        y: 2542
+        width: 212
+        height: 368
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26.5, y: 47}
+        - {x: -26.5, y: -46}
+        - {x: 27.5, y: -46}
+        - {x: 27.5, y: 47}
+    - name: OT Bullet 9
+      rect:
+        serializedVersion: 2
+        x: 634
+        y: 2550
+        width: 208
+        height: 396
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26, y: 50.5}
+        - {x: -26, y: -49.5}
+        - {x: 27, y: -49.5}
+        - {x: 27, y: 50.5}
+    - name: OT Bullet 10
+      rect:
+        serializedVersion: 2
+        x: 890
+        y: 2602
+        width: 176
+        height: 428
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22, y: 54.5}
+        - {x: -22, y: -53.5}
+        - {x: 23, y: -53.5}
+        - {x: 23, y: 54.5}
+    - name: OT Handgrenade 1
+      rect:
+        serializedVersion: 2
+        x: 3622
+        y: 3714
+        width: 298
+        height: 88
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47.25, y: -56.5}
+        - {x: -47.25, y: -62.5}
+        - {x: -32.25, y: -80.5}
+        - {x: 7.75, y: -80.5}
+        - {x: 22.75, y: -62.5}
+        - {x: 22.75, y: -56.5}
+      - - {x: -12.25, y: 80.5}
+        - {x: -40.25, y: 71.5}
+        - {x: -39.25, y: 62.5}
+        - {x: -50.25, y: 17.5}
+        - {x: -50.25, y: -3.5}
+        - {x: 24.75, y: -3.5}
+        - {x: 26.75, y: -1.5}
+        - {x: 24.75, y: 8.5}
+        - {x: 33.75, y: -11.5}
+        - {x: 26.75, y: -75.5}
+        - {x: 37.75, y: -75.5}
+        - {x: 57.75, y: -9.5}
+        - {x: 57.75, y: 71.5}
+        - {x: 51.75, y: 80.5}
+      - - {x: -54.25, y: -29.5}
+        - {x: -54.25, y: -47.5}
+        - {x: -48.25, y: -56.5}
+        - {x: 24.75, y: -56.5}
+        - {x: 30.75, y: -44.5}
+        - {x: 30.75, y: -29.5}
+      - - {x: -52.25, y: -2.5}
+        - {x: -55.25, y: -11.5}
+        - {x: -55.25, y: -29.5}
+        - {x: 31.75, y: -29.5}
+        - {x: 31.75, y: -11.5}
+        - {x: 27.75, y: -2.5}
+    - name: OT Handgrenade 2
+      rect:
+        serializedVersion: 2
+        x: 3078
+        y: 3590
+        width: 396
+        height: 204
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.5, y: 26.5}
+        - {x: -44.5, y: 2.5}
+        - {x: -49.5, y: -16.5}
+        - {x: -49.5, y: -25.5}
+        - {x: 50.5, y: -25.5}
+        - {x: 50.5, y: 26.5}
+    - name: OT Tank 1
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1834
+        width: 1056
+        height: 492
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -47, y: 62.5}
+        - {x: -111, y: 55.5}
+        - {x: -117, y: 18.5}
+        - {x: -132, y: -3.5}
+        - {x: -132, y: -53.5}
+        - {x: -128, y: -61.5}
+        - {x: 115, y: -61.5}
+        - {x: 133, y: -47.5}
+        - {x: 133, y: 26.5}
+        - {x: 58, y: 62.5}
+    - name: OT Handgrenade 3
+      rect:
+        serializedVersion: 2
+        x: 2566
+        y: 3374
+        width: 396
+        height: 424
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20.5, y: 54}
+        - {x: -49.5, y: 38}
+        - {x: -49.5, y: -47}
+        - {x: -47.5, y: -53}
+        - {x: 28.5, y: -53}
+        - {x: 50.5, y: -33}
+        - {x: 50.5, y: 54}
+    - name: OT Handgrenade 4
+      rect:
+        serializedVersion: 2
+        x: 3634
+        y: 2490
+        width: 256
+        height: 304
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -31, y: 39}
+        - {x: -32, y: 26}
+        - {x: -32, y: -38}
+        - {x: 33, y: -38}
+        - {x: 33, y: 39}
+    - name: OT Handgrenade 5
+      rect:
+        serializedVersion: 2
+        x: 3062
+        y: 2486
+        width: 424
+        height: 772
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10, y: 97.5}
+        - {x: -53, y: 71.5}
+        - {x: -53, y: -57.5}
+        - {x: -47, y: -56.5}
+        - {x: -44, y: -50.5}
+        - {x: -39, y: 49.5}
+        - {x: -33, y: 52.5}
+        - {x: -37, y: 50.5}
+        - {x: -39, y: 48.5}
+        - {x: -39, y: 37.5}
+        - {x: -42, y: -96.5}
+        - {x: 32, y: -96.5}
+        - {x: 54, y: -15.5}
+        - {x: 54, y: 85.5}
+        - {x: 46, y: 97.5}
+    - name: OT Handgrenade 6
+      rect:
+        serializedVersion: 2
+        x: 2650
+        y: 2486
+        width: 280
+        height: 296
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -35, y: 38}
+        - {x: -35, y: -37}
+        - {x: 36, y: -37}
+        - {x: 36, y: 10}
+        - {x: 27, y: 38}
+      - - {x: -35, y: 22}
+        - {x: -35, y: 14}
+        - {x: -33, y: 14}
+        - {x: -31, y: 16}
+        - {x: -31, y: 20}
+        - {x: -33, y: 22}
+    - name: OT Handgrenade 7
+      rect:
+        serializedVersion: 2
+        x: 2016
+        y: 2486
+        width: 414
+        height: 748
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -40, y: 94.5}
+        - {x: -52, y: 83.5}
+        - {x: -52, y: 28.5}
+        - {x: -34, y: -45.5}
+        - {x: -12, y: -42.5}
+        - {x: -12, y: -35.5}
+        - {x: -9, y: -65.5}
+        - {x: -19, y: -62.5}
+        - {x: -22, y: -93.5}
+        - {x: 52, y: -93.5}
+        - {x: 52, y: 76.5}
+        - {x: 46, y: 94.5}
+    - name: OT Handgrenade 8
+      rect:
+        serializedVersion: 2
+        x: 3438
+        y: 1674
+        width: 612
+        height: 752
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -44.5, y: 95}
+        - {x: -65.5, y: 57}
+        - {x: -76.5, y: 24}
+        - {x: -76.5, y: -52}
+        - {x: -51.5, y: -94}
+        - {x: 63.5, y: -94}
+        - {x: 77.5, y: -31}
+        - {x: 77.5, y: 92}
+        - {x: 60.5, y: 95}
+    - name: OT Handgrenade 9
+      rect:
+        serializedVersion: 2
+        x: 2726
+        y: 1674
+        width: 444
+        height: 300
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -55.5, y: 38.5}
+        - {x: -55.5, y: 12.5}
+        - {x: -48.5, y: -13.5}
+        - {x: -33.5, y: -37.5}
+        - {x: 37.5, y: -37.5}
+        - {x: 56.5, y: 7.5}
+        - {x: 56.5, y: 38.5}
+    - name: OT Tank 2
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1254
+        width: 1056
+        height: 492
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 110, y: 29.5}
+        - {x: 48, y: 62.5}
+        - {x: -118, y: 62.5}
+        - {x: -132, y: 45.5}
+        - {x: -132, y: -58.5}
+        - {x: -116, y: -61.5}
+        - {x: 93, y: -61.5}
+        - {x: 132, y: -53.5}
+        - {x: 133, y: -51.5}
+        - {x: 133, y: 10.5}
+    - name: OT Jet 1
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 538
+        width: 868
+        height: 652
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 109.5, y: 46.5}
+        - {x: 60.5, y: 82.5}
+        - {x: -108.5, y: 82.5}
+        - {x: -108.5, y: 55.5}
+        - {x: -26.5, y: -69.5}
+        - {x: 10.5, y: -81.5}
+        - {x: 44.5, y: -81.5}
+        - {x: 97.5, y: -41.5}
+        - {x: 97.5, y: -30.5}
+        - {x: 109.5, y: 12.5}
+    - name: OT Jet 2
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 54
+        width: 1328
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -143, y: 41}
+        - {x: -162, y: 38}
+        - {x: -166, y: 14}
+        - {x: -166, y: -41}
+        - {x: -6, y: -41}
+        - {x: 167, y: 19}
+        - {x: 167, y: 41}
+    - name: OT Explosive
+      rect:
+        serializedVersion: 2
+        x: 3214
+        y: 862
+        width: 824
+        height: 620
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4, y: 63.5}
+        - {x: -18, y: 78.5}
+        - {x: -58, y: 78.5}
+        - {x: -101, y: 52.5}
+        - {x: -103, y: 49.5}
+        - {x: -103, y: -77.5}
+        - {x: 103, y: -77.5}
+        - {x: 104, y: -76.5}
+        - {x: 104, y: 50.5}
+        - {x: 103, y: 52.5}
+    - name: OT Explosive remote
+      rect:
+        serializedVersion: 2
+        x: 2830
+        y: 862
+        width: 332
+        height: 700
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10.5, y: 88.5}
+        - {x: -41.5, y: 88.5}
+        - {x: -41.5, y: -87.5}
+        - {x: 36.5, y: -87.5}
+        - {x: 42.5, y: -61.5}
+        - {x: 42.5, y: 31.5}
+    - name: OT Healthpack
+      rect:
+        serializedVersion: 2
+        x: 3402
+        y: 98
+        width: 616
+        height: 616
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -74, y: 78}
+        - {x: -77, y: 75}
+        - {x: -77, y: -75}
+        - {x: -75, y: -77}
+        - {x: 78, y: -77}
+        - {x: 78, y: 78}
+    - name: OT Health
+      rect:
+        serializedVersion: 2
+        x: 2854
+        y: 182
+        width: 452
+        height: 448
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -41.5, y: 57}
+        - {x: -56.5, y: 49}
+        - {x: -56.5, y: -49}
+        - {x: -53.5, y: -56}
+        - {x: 37.5, y: -56}
+        - {x: 57.5, y: -22}
+        - {x: 57.5, y: 40}
+        - {x: 15.5, y: 57}
+    - name: Orange theme spritesheet 1_0
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 3450
+        width: 184
+        height: 408
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23, y: 52}
+        - {x: -23, y: -51}
+        - {x: 24, y: -51}
+        - {x: 24, y: 52}
+    - name: Orange theme spritesheet 1_1
+      rect:
+        serializedVersion: 2
+        x: 886
+        y: 3446
+        width: 212
+        height: 464
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23.5, y: -49}
+        - {x: 25.5, y: -49}
+        - {x: 27.5, y: -46}
+        - {x: 27.5, y: 59}
+        - {x: -26.5, y: 59}
+        - {x: -26.5, y: -58}
+        - {x: 27.5, y: -58}
+        - {x: 27.5, y: -49}
+    - name: Orange theme spritesheet 1_2
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 3450
+        width: 180
+        height: 280
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -22.5, y: 36}
+        - {x: -22.5, y: -35}
+        - {x: 23.5, y: -35}
+        - {x: 23.5, y: 36}
+    - name: Orange theme spritesheet 1_3
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 3450
+        width: 188
+        height: 308
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -23.5, y: 39.5}
+        - {x: -23.5, y: -38.5}
+        - {x: 24.5, y: -38.5}
+        - {x: 24.5, y: 39.5}
+    - name: Orange theme spritesheet 1_4
+      rect:
+        serializedVersion: 2
+        x: 3600
+        y: 3606
+        width: 90
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Orange theme spritesheet 1_5
+      rect:
+        serializedVersion: 2
+        x: 3078
+        y: 3374
+        width: 396
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -49.5, y: 26}
+        - {x: -49.5, y: -7}
+        - {x: -30.5, y: -25}
+        - {x: 34.5, y: -25}
+        - {x: 50.5, y: -17}
+        - {x: 50.5, y: 26}
+    - name: Orange theme spritesheet 1_6
+      rect:
+        serializedVersion: 2
+        x: 3606
+        y: 3498
+        width: 84
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Orange theme spritesheet 1_7
+      rect:
+        serializedVersion: 2
+        x: 3634
+        y: 3402
+        width: 268
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Orange theme spritesheet 1_8
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 2422
+        width: 164
+        height: 656
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -20.5, y: 83}
+        - {x: -20.5, y: -82}
+        - {x: 21.5, y: -82}
+        - {x: 21.5, y: 59}
+        - {x: 19.5, y: 83}
+    - name: Orange theme spritesheet 1_9
+      rect:
+        serializedVersion: 2
+        x: 366
+        y: 2422
+        width: 236
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Orange theme spritesheet 1_10
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 2422
+        width: 236
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Orange theme spritesheet 1_11
+      rect:
+        serializedVersion: 2
+        x: 882
+        y: 2418
+        width: 196
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -24.5, y: 23.5}
+        - {x: -24.5, y: -22.5}
+        - {x: 25.5, y: -22.5}
+        - {x: 25.5, y: 12.5}
+        - {x: 24.5, y: 22.5}
+        - {x: 24.5, y: 23.5}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

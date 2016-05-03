@@ -16,7 +16,6 @@ public class PlayerMovement : NetworkBehaviour
     public int weaponType;
     bool allowFire;
     public float speed = 0.5f;
-    public float weaponTimer;
     public Transform missileSpawnPoint;
     public Transform missileSpawnPoint1;
     public Transform missileSpawnPoint2;
@@ -34,6 +33,7 @@ public class PlayerMovement : NetworkBehaviour
     private Transform platformCollisionIgnored;
     public GameObject BulletSound;
     public GameObject JumpSound;
+    public float ammo;
 
     [SyncVar]
     private float health = 100;
@@ -46,8 +46,8 @@ public class PlayerMovement : NetworkBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         playerOrientation = true;
         grounded = true;
-        weaponTimer = 10.0f;
         shootPos = new Vector3(1, 0, 0);
+        ammo = 10.0f;
 	}
 
     void Update()
@@ -56,8 +56,6 @@ public class PlayerMovement : NetworkBehaviour
         {
             return;
         }
-
-        CmdTimer();
 
         if (Input.GetKey(KeyCode.D))
         {
@@ -136,7 +134,6 @@ public class PlayerMovement : NetworkBehaviour
         if (coll.gameObject.tag == "Ground")
         {
             grounded = true;
-            Debug.Log("Grounded = "+grounded);
         }
 
     }
@@ -149,19 +146,6 @@ public class PlayerMovement : NetworkBehaviour
 
         if (direction == 1)
             shootPos = new Vector3(-1, 0, 0);
-    }
-
-    [Command]
-    void CmdTimer()
-    {
-        if (weaponTimer <= 0.0f)
-        {
-            weaponTimer = 0.0f;
-        }
-        else if (weaponTimer < 10.0f && weaponTimer > 0.0f)
-        {
-            weaponTimer -= Time.deltaTime;
-        }
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -229,7 +213,7 @@ public class PlayerMovement : NetworkBehaviour
         {
             GameObject missile;
             missile = (GameObject)Instantiate(missilePrefab, missileSpawnPoint.position, Quaternion.identity);
-            Missile m = missile.GetComponent<Missile>();
+            //Missile m = missile.GetComponent<Missile>();
             Rigidbody2D rigid = missile.GetComponent<Rigidbody2D>();
             rigid.velocity = shootPos * missileSpeed;
             Destroy(missile, lifeTime);
@@ -237,7 +221,7 @@ public class PlayerMovement : NetworkBehaviour
         }
         else if(weaponType == 1)
         {
-            if (weaponTimer > 0.0f)
+            if (ammo > 0.0f)
             {
                 GameObject[] missile = new GameObject[3];
                 for (int i = 0; i < 3; i++)
@@ -248,15 +232,24 @@ public class PlayerMovement : NetworkBehaviour
                         missile[i] = (GameObject)Instantiate(missilePrefab, missileSpawnPoint1.position, Quaternion.identity);
                     if (i == 2)
                         missile[i] = (GameObject)Instantiate(missilePrefab, missileSpawnPoint2.position, Quaternion.identity);
-                    Missile m = missile[i].GetComponent<Missile>();
+                    //Missile m = missile[i].GetComponent<Missile>();
                     Rigidbody2D rigid = missile[i].GetComponent<Rigidbody2D>();
                     rigid.velocity = shootPos * missileSpeed;
                     Destroy(missile[i], lifeTime);
                     NetworkServer.Spawn(missile[i]);
                 }
+                ammo = ammo - 1.0f;
             }
-            else
+            else {
                 weaponType = 0;
+                GameObject missile;
+                missile = (GameObject)Instantiate(missilePrefab, missileSpawnPoint.position, Quaternion.identity);
+                //Missile m = missile.GetComponent<Missile>();
+                Rigidbody2D rigid = missile.GetComponent<Rigidbody2D>();
+                rigid.velocity = shootPos * missileSpeed;
+                Destroy(missile, lifeTime);
+                NetworkServer.Spawn(missile);
+            }
         }
     }
     

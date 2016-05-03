@@ -5,7 +5,6 @@ public class FixCamera : MonoBehaviour
 {
 
     public float dampTime = 0.1f;
-    private Vector3 velocity = Vector3.zero;
     private Vector3 newPosition;
     private int directionFacingBefore = 2;
     private float posY;

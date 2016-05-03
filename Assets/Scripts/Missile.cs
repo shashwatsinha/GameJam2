@@ -40,13 +40,6 @@ public class Missile : NetworkBehaviour {
             Destroy(gameObject);
         }
 
-
-        if (collision.gameObject.tag == "Gift")
-        {
-
-            Destroy(gameObject);
-        }
-
         if (collision.gameObject.tag == "Missile")
         {
             Destroy(collision.gameObject);

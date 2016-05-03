@@ -6,7 +6,7 @@ public class Enemy : NetworkBehaviour
 {
     public float moveSpeed = 2f;        // The speed the enemy moves at.
     public int HP = 2;                  // How many times the enemy can be hit before it dies.
-    public GameObject giftPackage;
+    public GameObject[] weapons;
 
     private bool dead = false;          // Whether or not the enemy is dead.
 
@@ -53,8 +53,13 @@ public class Enemy : NetworkBehaviour
         dead = true;
         Spawner.enemyCount--;
 
-        GameObject gift= (GameObject)Instantiate(giftPackage, transform.position, transform.rotation);
-        NetworkServer.Spawn(gift);
+        int randomNum = Random.Range(0, 2);
+        if (randomNum == 1)
+        {
+            int random = Random.Range(0, 3);
+            GameObject weaponPickup = (GameObject)Instantiate(weapons[random], transform.position, transform.rotation);
+            NetworkServer.Spawn(weaponPickup);
+        }
         Destroy(gameObject);
     }
 
