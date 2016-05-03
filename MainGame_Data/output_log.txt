@@ -1,31 +1,31 @@
-Initialize engine version: 5.3.4f1 (fdbb5133b820)
+Initialize engine version: 5.3.2f1 (e87ab445ead0)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 11.0 [level 11.0]
-    Renderer: NVIDIA GeForce GTX 960M      (ID=0x139b)
+    Renderer: NVIDIA GeForce GTX 780 (ID=0x1004)
     Vendor:   NVIDIA
-    VRAM:     1995 MB
+    VRAM:     3013 MB
 Begin MonoManager ReloadAssembly
-Platform assembly: D:\Unity Projects\2DMultiplayerShooter\05_03_1\2DMultiplayerShooter\MainGame_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading D:\Unity Projects\2DMultiplayerShooter\05_03_1\2DMultiplayerShooter\MainGame_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: D:\Unity Projects\2DMultiplayerShooter\05_03_1\2DMultiplayerShooter\MainGame_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading D:\Unity Projects\2DMultiplayerShooter\05_03_1\2DMultiplayerShooter\MainGame_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: D:\Unity Projects\2DMultiplayerShooter\05_03_1\2DMultiplayerShooter\MainGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
-Loading D:\Unity Projects\2DMultiplayerShooter\05_03_1\2DMultiplayerShooter\MainGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
-Platform assembly: D:\Unity Projects\2DMultiplayerShooter\05_03_1\2DMultiplayerShooter\MainGame_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
-Loading D:\Unity Projects\2DMultiplayerShooter\05_03_1\2DMultiplayerShooter\MainGame_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.042 seconds
-Platform assembly: D:\Unity Projects\2DMultiplayerShooter\05_03_1\2DMultiplayerShooter\MainGame_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: D:\Unity Projects\2DMultiplayerShooter\05_03_1\2DMultiplayerShooter\MainGame_Data\Managed\System.dll (this message is harmless)
-desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+Platform assembly: C:\GameJam2\MainGame_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\GameJam2\MainGame_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\GameJam2\MainGame_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\GameJam2\MainGame_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\GameJam2\MainGame_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\GameJam2\MainGame_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\GameJam2\MainGame_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\GameJam2\MainGame_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.051 seconds
+Platform assembly: C:\GameJam2\MainGame_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\GameJam2\MainGame_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 3840x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 0.613162 ms
-Did not find target for sync message for 144
+UnloadTime: 0.581742 ms
+HandleTransform no gameObject
  
 (Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 37)
 
 Setting up 2 worker threads for Enlighten.
-  Thread -> id: 1cb4 -> priority: 1 
-  Thread -> id: 1fa4 -> priority: 1 
+  Thread -> id: 37d8 -> priority: 1 
+  Thread -> id: 3714 -> priority: 1 
