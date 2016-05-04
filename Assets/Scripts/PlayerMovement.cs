@@ -10,35 +10,31 @@ public class PlayerMovement : NetworkBehaviour
 {
     private NetworkIdentity identity;
     private Rigidbody2D rigidBody;
-    public float moveForce = 365f;
-    public float maxSpeed = 5f;
+
     public GameObject groundCheck;
     public bool grounded;
     public int weaponType;
     bool allowFire;
     public float speed = 0.5f;
     public Transform missileSpawnPoint;
-    public float jumpForce = 1000f;
     public Transform missileSpawnPoint1;
     public Transform missileSpawnPoint2;
     public float missileSpeed = 50;
     public GameObject missilePrefab;
     public GameObject healEffect;
     float missileLifeTime = 1.5f;
-    private float shootPos;
+    private Vector3 shootPos;
     public static float posX;
     public static float posY;
     public static int directionFacing=2;
-    public bool playerOrientation;
     private int directionFacingBefore = 0;
+    public bool playerOrientation;
     private RaycastHit2D hit;
-    public bool jump = false;
     private Transform platformCollisionIgnored;
     public GameObject BulletSound;
     public GameObject JumpSound;
     public float ammo;
     private Animator anim;
-    public bool facingRight = true;
 
     [SyncVar]
     private float health = 100;
@@ -51,7 +47,7 @@ public class PlayerMovement : NetworkBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         playerOrientation = true;
         grounded = true;
-        shootPos = missileSpawnPoint.transform.position.x;
+        shootPos = new Vector3(1,0,0);
         ammo = 10.0f;
         anim = GetComponent<Animator>();
     }
@@ -67,27 +63,35 @@ public class PlayerMovement : NetworkBehaviour
         {
             transform.position = new Vector3(transform.position.x + (5f * Time.deltaTime), transform.position.y, transform.position.z);
             playerOrientation = true;
+            CmdOrientation(playerOrientation);
             directionFacing = 0;
             directionFacingBefore = directionFacing;
             CmdDirection(0);
+            anim.SetFloat("Speed", 1.0f);
         }
         else if (Input.GetKey(KeyCode.A))
         {
             transform.position = new Vector3(transform.position.x - (5f * Time.deltaTime), transform.position.y, transform.position.z);
             playerOrientation = false;
+            CmdOrientation(playerOrientation);
             directionFacing = 1;
             directionFacingBefore = directionFacing;
             CmdDirection(1);
+            anim.SetFloat("Speed", 1.0f);
         }
         else
         {
             directionFacing = 2;
+            anim.SetFloat("Speed", 0.0f);
+            if (directionFacingBefore == 0)
+                CmdOrientation(true);
+            else if (directionFacingBefore == 1)
+                CmdOrientation(false);
         }
-
-        //Debug.Log(weaponTimer);
 
         if (Input.GetKeyDown(KeyCode.W) && grounded == true)
         {
+            anim.SetTrigger("Jump");
             if (platformCollisionIgnored != null)
                 Physics2D.IgnoreCollision(platformCollisionIgnored.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false);
             GetComponent<Rigidbody2D>().AddForce(Vector3.up * 4200.0f);
@@ -100,7 +104,7 @@ public class PlayerMovement : NetworkBehaviour
 
             GameObject bulletSound = Instantiate(BulletSound, this.transform.position, this.transform.rotation) as GameObject;
 
-            CmdDoFire(missileLifeTime,playerOrientation);
+            CmdDoFire(missileLifeTime);
         }
 
         if (Input.GetKey(KeyCode.S))
@@ -108,11 +112,7 @@ public class PlayerMovement : NetworkBehaviour
             if (platformCollisionIgnored != null)
                 Physics2D.IgnoreCollision(platformCollisionIgnored.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false);
 
-            Vector3 pos = new Vector3(0, 0, 0);
-            if (directionFacingBefore == 0)
-                pos = new Vector3(groundCheck.transform.position.x, groundCheck.transform.position.y, 0);
-            else if (directionFacingBefore == 1)
-                pos = new Vector3(groundCheck.transform.position.x, -groundCheck.transform.position.y, 0);
+            Vector3 pos = new Vector3(groundCheck.transform.position.x, groundCheck.transform.position.y, 0);
             hit = Physics2D.Linecast(transform.position, pos, 1 << LayerMask.NameToLayer("Ground"));
             if (hit)
             {
@@ -123,71 +123,8 @@ public class PlayerMovement : NetworkBehaviour
 
         posX = transform.position.x;
         posY = transform.position.y;
-
-        if (playerOrientation == true)
-        {
-            transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-        }
-
-        else if (playerOrientation == false)
-        {
-            transform.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
-        }
     }
-
-
-    void FixedUpdate()
-    {
-        if (!identity.isLocalPlayer)
-        {
-            return;
-        }
-        float h = Input.GetAxis("Horizontal");
-        anim.SetFloat("Speed", Mathf.Abs(h));
-        //  CmdMove();
-
-
-    }
-    [Command]
-    void CmdMove()
-    {
-        float h = Input.GetAxis("Horizontal");
-
-      
-
-        /*  if (h * GetComponent<Rigidbody2D>().velocity.x < maxSpeed)
-              // ... add a force to the player.
-              GetComponent<Rigidbody2D>().AddForce(Vector2.right * h * moveForce);
-
-          // If the player's horizontal velocity is greater than the maxSpeed...
-          if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > maxSpeed)
-              // ... set the player's velocity to the maxSpeed in the x axis.
-              GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Sign(GetComponent<Rigidbody2D>().velocity.x) * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
-
-          // If the input is moving the player right and the player is facing left...
-          if (h > 0 && !facingRight)
-              // ... flip the player.
-              CmdFlip();
-          // Otherwise if the input is moving the player left and the player is facing right...
-          else if (h < 0 && facingRight)
-              // ... flip the player.
-              CmdFlip();
-              */
-        // The Speed animator parameter is set to the absolute value of the horizontal input.
-        anim.SetFloat("Speed", Mathf.Abs(h));
-
-        if (jump)
-        {
-            // Set the Jump animator trigger parameter.
-            anim.SetTrigger("Jump");
-
-            // Add a vertical force to the player.
-            GetComponent<Rigidbody2D>().AddForce(Vector3.up * 4200.0f);
-
-            // Make sure the player can't jump again until the jump conditions from Update are satisfied.
-            jump = false;
-        }
-    }
+    
     void OnCollisionEnter2D(Collision2D coll)
     {
         if (coll.gameObject.tag == "Ground")
@@ -201,10 +138,20 @@ public class PlayerMovement : NetworkBehaviour
     void CmdDirection(float direction)
     {
         if (direction == 0)
-            shootPos = 1;
+            shootPos = new Vector3(1, 0, 0);
 
-       if (direction == 1)
-          shootPos = -1;
+        if (direction == 1)
+            shootPos = new Vector3(-1, 0, 0);
+    }
+
+    [Command]
+    void CmdOrientation(bool orientation)
+    {
+        if (orientation == true)
+            transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+
+        if (orientation == false)
+            transform.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -266,7 +213,7 @@ public class PlayerMovement : NetworkBehaviour
     }
    
     [Command]
-    public void CmdDoFire(float lifeTime,bool direction)
+    public void CmdDoFire(float lifeTime)
     {
         
             
@@ -274,12 +221,8 @@ public class PlayerMovement : NetworkBehaviour
         {
             GameObject missile;
             missile = (GameObject)Instantiate(missilePrefab, missileSpawnPoint.position, Quaternion.identity);
-            //Missile m = missile.GetComponent<Missile>();
             Rigidbody2D rigid = missile.GetComponent<Rigidbody2D>();
-            if(direction==true)
-                rigid.velocity = Vector2.right * missileSpeed;
-            else
-                rigid.velocity = Vector2.right * missileSpeed;
+            rigid.velocity = shootPos * missileSpeed;
             Destroy(missile, lifeTime);
             NetworkServer.Spawn(missile);
         }
@@ -296,12 +239,8 @@ public class PlayerMovement : NetworkBehaviour
                         missile[i] = (GameObject)Instantiate(missilePrefab, missileSpawnPoint1.position, Quaternion.identity);
                     if (i == 2)
                         missile[i] = (GameObject)Instantiate(missilePrefab, missileSpawnPoint2.position, Quaternion.identity);
-                    //Missile m = missile[i].GetComponent<Missile>();
                     Rigidbody2D rigid = missile[i].GetComponent<Rigidbody2D>();
-                    if (direction == true)
-                        rigid.velocity = Vector2.right * missileSpeed;
-                    else
-                        rigid.velocity = Vector2.right * -missileSpeed;
+                    rigid.velocity = shootPos * missileSpeed;
                     Destroy(missile[i], lifeTime);
                     NetworkServer.Spawn(missile[i]);
                 }
@@ -311,12 +250,8 @@ public class PlayerMovement : NetworkBehaviour
                 weaponType = 0;
                 GameObject missile;
                 missile = (GameObject)Instantiate(missilePrefab, missileSpawnPoint.position, Quaternion.identity);
-                //Missile m = missile.GetComponent<Missile>();
                 Rigidbody2D rigid = missile.GetComponent<Rigidbody2D>();
-              //  if (direction == true)
-              //      rigid.velocity = shootPos * missileSpeed;
-              //  else
-             //       rigid.velocity = shootPos * -missileSpeed;
+                rigid.velocity = shootPos * missileSpeed;
                 Destroy(missile, lifeTime);
                 NetworkServer.Spawn(missile);
             }
@@ -331,16 +266,5 @@ public class PlayerMovement : NetworkBehaviour
         }
 
         GUI.Label(new Rect(100, 100, 100, 100), health.ToString());
-    }
-    [Command]
-    void CmdFlip()
-    {
-        // Switch the way the player is labelled as facing.
-        facingRight = !facingRight;
-
-        // Multiply the player's x local scale by -1.
-        Vector3 theScale = transform.localScale;
-        theScale.x *= -1;
-        transform.localScale = theScale;
     }
 }
