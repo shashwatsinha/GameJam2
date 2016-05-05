@@ -54,39 +54,57 @@ public class PlayerMovement : NetworkBehaviour
 
     void Update()
     {
+        
         if (!identity.isLocalPlayer)
         {
             return;
         }
-
+        
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position = new Vector3(transform.position.x + (5f * Time.deltaTime), transform.position.y, transform.position.z);
-            playerOrientation = true;
-            CmdOrientation(playerOrientation);
-            directionFacing = 0;
-            directionFacingBefore = directionFacing;
-            CmdDirection(0);
-            anim.SetFloat("Speed", 1.0f);
+          //  if (identity.isClient || identity.isLocalPlayer)
+            {
+                transform.position = new Vector3(transform.position.x + (5f * Time.deltaTime), transform.position.y, transform.position.z);
+                playerOrientation = true;
+                Orientation(playerOrientation);
+                CmdOrientation(playerOrientation);
+                directionFacing = 0;
+                directionFacingBefore = directionFacing;
+                Direction(0);
+                CmdDirection(0);
+                anim.SetFloat("Speed", 1.0f);
+            }
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            transform.position = new Vector3(transform.position.x - (5f * Time.deltaTime), transform.position.y, transform.position.z);
-            playerOrientation = false;
-            CmdOrientation(playerOrientation);
-            directionFacing = 1;
-            directionFacingBefore = directionFacing;
-            CmdDirection(1);
-            anim.SetFloat("Speed", 1.0f);
+           //if (identity.isServer || identity.isClient || identity.isLocalPlayer)
+            {
+
+                transform.position = new Vector3(transform.position.x - (5f * Time.deltaTime), transform.position.y, transform.position.z);
+                playerOrientation = false;
+                Orientation(playerOrientation);
+                CmdOrientation(playerOrientation);
+                directionFacing = 1;
+                directionFacingBefore = directionFacing;
+                Direction(1);
+                CmdDirection(1);
+                anim.SetFloat("Speed", 1.0f);
+            }
         }
         else
         {
             directionFacing = 2;
             anim.SetFloat("Speed", 0.0f);
             if (directionFacingBefore == 0)
+            {
+                Orientation(true);
                 CmdOrientation(true);
+            }
             else if (directionFacingBefore == 1)
+            {
+                Orientation(false);
                 CmdOrientation(false);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.W) && grounded == true)
@@ -133,8 +151,8 @@ public class PlayerMovement : NetworkBehaviour
         }
 
     }
-
-    [Command]
+    
+   [Command]
     void CmdDirection(float direction)
     {
         if (direction == 0)
@@ -144,14 +162,33 @@ public class PlayerMovement : NetworkBehaviour
             shootPos = new Vector3(-1, 0, 0);
     }
 
-    [Command]
+    void Direction(float direction)
+    {
+        if (direction == 0)
+            shootPos = new Vector3(1, 0, 0);
+
+        if (direction == 1)
+            shootPos = new Vector3(-1, 0, 0);
+    }
+
+
+      [Command]
     void CmdOrientation(bool orientation)
     {
         if (orientation == true)
-            transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
 
         if (orientation == false)
-            transform.eulerAngles = new Vector3(0.0f, 180.0f, 0.0f);
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
+    }
+
+    void Orientation(bool orientation)
+    {
+        if (orientation == true)
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+
+        if (orientation == false)
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
     }
 
     void OnTriggerEnter2D(Collider2D collider)

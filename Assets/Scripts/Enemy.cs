@@ -12,7 +12,7 @@ public class Enemy : NetworkBehaviour
 
     void Start()
     {
-        GetComponent<Renderer>().material.color = new Color(1.0f, 0.0f, 0.0f); //C#
+        //GetComponent<Renderer>().material.color = new Color(1.0f, 0.0f, 0.0f); //C#
     }
    
    
@@ -59,12 +59,13 @@ public class Enemy : NetworkBehaviour
             int random = Random.Range(0, 3);
             GameObject weaponPickup = (GameObject)Instantiate(weapons[random], transform.position, transform.rotation);
             NetworkServer.Spawn(weaponPickup);
+            
         }
         Destroy(gameObject);
     }
 
-
-    public void Flip()
+    [Command]
+    public void CmdFlip()
     {
         // Multiply the x component of localScale by -1.
         Vector3 enemyScale = transform.localScale;
@@ -79,18 +80,18 @@ public class Enemy : NetworkBehaviour
             int k = Random.Range(0, 3);
             if (k == 2)
             {
-                Flip();
+                CmdFlip();
             }
         }
 
         if (collision.gameObject.tag == "Enemy")
         {
-            Flip();
+            CmdFlip();
         }
 
         if (collision.gameObject.tag == "Wall")
         {
-            Flip();
+            CmdFlip();
         }
 
         if (collision.gameObject.tag == "Player")
@@ -98,7 +99,7 @@ public class Enemy : NetworkBehaviour
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             player.TakeDamage(15.0f);
             //NetworkServer.Destroy(gameObject);
-            Flip();
+            CmdFlip();
         }
 
     //    if (collision.gameObject.tag == "Missile")
