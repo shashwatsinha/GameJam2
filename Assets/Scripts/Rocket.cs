@@ -71,7 +71,12 @@ public class Rocket : NetworkBehaviour
         Quaternion randomRotation = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
 
         // Instantiate the explosion where the rocket is with the random rotation.
-        Instantiate(explosion, transform.position, randomRotation);
-        Instantiate(rocketExplode, transform.position, transform.rotation);
+        GameObject rocketExplosion;
+        rocketExplosion = (GameObject)Instantiate(explosion, transform.position, randomRotation);
+        NetworkServer.Spawn(rocketExplosion);
+
+        GameObject rocketExplodeSound;
+        rocketExplodeSound = (GameObject)Instantiate(rocketExplode, transform.position, transform.rotation);
+        NetworkServer.Spawn(rocketExplodeSound);
     }
 }

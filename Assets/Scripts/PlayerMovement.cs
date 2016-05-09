@@ -174,7 +174,7 @@ public class PlayerMovement : NetworkBehaviour
     }
 
 
-      [Command]
+    [Command]
     void CmdOrientation(bool orientation)
     {
         if (orientation == true)
