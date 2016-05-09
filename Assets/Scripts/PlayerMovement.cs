@@ -21,6 +21,8 @@ public class PlayerMovement : NetworkBehaviour
     public Transform missileSpawnPoint2;
     public float missileSpeed = 50;
     public GameObject missilePrefab;
+    public GameObject rocketPrefab;                     // Prefab of the rocket.
+    public float rocketSpeed = 20f;                      // The speed the rocket will fire at.
     public GameObject healEffect;
     float missileLifeTime = 1.5f;
     private Vector3 shootPos;
@@ -293,6 +295,37 @@ public class PlayerMovement : NetworkBehaviour
                 NetworkServer.Spawn(missile);
             }
         }
+        else if (weaponType == 2)
+        {
+            if (ammo > 0.0f)
+            {
+                CmdShootRocket(lifeTime);
+                ammo = ammo - 1.0f;
+            }
+            else {
+                weaponType = 0;
+                GameObject missile;
+                missile = (GameObject)Instantiate(missilePrefab, missileSpawnPoint.position, Quaternion.identity);
+                Rigidbody2D rigid = missile.GetComponent<Rigidbody2D>();
+                rigid.velocity = shootPos * missileSpeed;
+                Destroy(missile, lifeTime);
+                NetworkServer.Spawn(missile);
+            }
+        }
+    }
+
+    [Command]
+    void CmdShootRocket(float lifetime)
+    {
+        GameObject missile = null;
+        if (shootPos.x > 0)
+            missile = (GameObject)Instantiate(rocketPrefab, missileSpawnPoint.position, Quaternion.Euler(new Vector3(0, 0, 0)));
+        else if (shootPos.x < 0)
+            missile = (GameObject)Instantiate(rocketPrefab, missileSpawnPoint.position, Quaternion.Euler(new Vector3(0, 0, 180f)));
+        Rigidbody2D rigid = missile.GetComponent<Rigidbody2D>();
+        rigid.velocity = shootPos * rocketSpeed;
+        Destroy(missile, lifetime);
+        NetworkServer.Spawn(missile);
     }
     
     void OnGUI()

@@ -46,7 +46,7 @@ public class Enemy : NetworkBehaviour
         
     }
     [Command]
-    void CmdDeath()
+    public void CmdDeath()
     {
 
         // Set dead to true.
@@ -56,7 +56,7 @@ public class Enemy : NetworkBehaviour
         int randomNum = Random.Range(0, 2);
         if (randomNum == 1)
         {
-            int random = Random.Range(0, 3);
+            int random = Random.Range(0, 2);
             GameObject weaponPickup = (GameObject)Instantiate(weapons[random], transform.position, transform.rotation);
             NetworkServer.Spawn(weaponPickup);
             

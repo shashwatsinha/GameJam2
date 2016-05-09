@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.Networking;
 
-public class WeaponSelecter : NetworkBehaviour
+public class RocketSelector : NetworkBehaviour
 {
     public int weaponType;
     // Use this for initialization
@@ -19,8 +19,8 @@ public class WeaponSelecter : NetworkBehaviour
         if (collision.gameObject.tag == "Player")
         {
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
-            player.weaponType = 1;
-            player.ammo = 10.0f;
+            player.weaponType = 2;
+            player.ammo = 5.0f;
             WeaponPickup.weaponCount--;
             Destroy(gameObject);
         }
