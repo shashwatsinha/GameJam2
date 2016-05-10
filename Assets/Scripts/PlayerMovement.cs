@@ -237,9 +237,9 @@ public class PlayerMovement : NetworkBehaviour
 
     public void Heal()
     {
-        if (!isServer)
+        if (!identity.isLocalPlayer)
             return;
-        if(health < 100)
+        if (health < 100)
         {
             health = health + 1;
             if (health > 100)
@@ -250,7 +250,7 @@ public class PlayerMovement : NetworkBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (!isServer)
+        if (!identity.isLocalPlayer)
             return;
 
         health -= damage;
