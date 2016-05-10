@@ -27,6 +27,7 @@ public class WeaponSelecter : NetworkBehaviour
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
             player.weaponType = 1;
             player.ammo = ammos;
+            player.maxAmmo = ammos;
             WeaponPickup.weaponCount--;
             Destroy(gameObject);
         }

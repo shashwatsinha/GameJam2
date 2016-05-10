@@ -12,8 +12,9 @@ public class PlayerMovement : NetworkBehaviour
     private NetworkIdentity identity;
     private Rigidbody2D rigidBody;
     private Image healthBar;
-    private Image WeaponBar;
+    public Image WeaponBar;
     private int maxHealth = 100;
+    public float maxAmmo;
 
     public GameObject groundCheck;
     public bool grounded;
@@ -57,7 +58,8 @@ public class PlayerMovement : NetworkBehaviour
         playerOrientation = true;
         grounded = true;
         shootPos = new Vector3(1,0,0);
-        ammo = 10.0f;
+        ammo = 0.0f;
+        maxAmmo = ammo;
         anim = GetComponent<Animator>();
         healthBar = transform.FindChild("Canvas").FindChild("Health").GetComponent<Image>();
         WeaponBar = transform.FindChild("Canvas").FindChild("Weapon").GetComponent<Image>();
@@ -66,7 +68,8 @@ public class PlayerMovement : NetworkBehaviour
 
     void Update()
     {
-        
+        WeaponBar.fillAmount = ammo / maxAmmo;
+
         if (!identity.isLocalPlayer)
         {
             return;
@@ -298,7 +301,9 @@ public class PlayerMovement : NetworkBehaviour
                     Destroy(missile[i], lifeTime);
                     NetworkServer.Spawn(missile[i]);
                 }
+                
                 ammo = ammo - 1.0f;
+                
             }
             else {
                 weaponType = 0;
@@ -327,6 +332,8 @@ public class PlayerMovement : NetworkBehaviour
                 NetworkServer.Spawn(missile);
             }
         }
+        WeaponBar.fillAmount =ammo / maxAmmo;
+
     }
 
     [Command]
