@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraShake.cs" />
     <Compile Include="Assets\Scripts\DeleteSoundGameObj.cs" />
+    <Compile Include="Assets\Scripts\Destroyer.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\FixCamera.cs" />
     <Compile Include="Assets\Scripts\Gift.cs" />
@@ -78,6 +79,8 @@
     <Compile Include="Assets\Scripts\MenuScript.cs" />
     <Compile Include="Assets\Scripts\Missile.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Rocket.cs" />
+    <Compile Include="Assets\Scripts\RocketSelector.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\WeaponPickup.cs" />
     <Compile Include="Assets\Scripts\WeaponSelecter.cs" />

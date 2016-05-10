@@ -67,7 +67,7 @@ public class Spawner : NetworkBehaviour
         //    Physics.IgnoreCollision(collider.GetComponent<Collider>(), GetComponent<Collider>());
         //}
 
-        collider.gameObject.SendMessage("CmdFlip");
+        //collider.gameObject.SendMessage("CmdFlip");
 
     }
 

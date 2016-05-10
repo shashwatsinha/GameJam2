@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 [RequireComponent (typeof(NetworkIdentity))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -10,6 +11,9 @@ public class PlayerMovement : NetworkBehaviour
 {
     private NetworkIdentity identity;
     private Rigidbody2D rigidBody;
+    private Image healthBar;
+    private Image WeaponBar;
+    private int maxHealth = 100;
 
     public GameObject groundCheck;
     public bool grounded;
@@ -19,12 +23,14 @@ public class PlayerMovement : NetworkBehaviour
     public Transform missileSpawnPoint;
     public Transform missileSpawnPoint1;
     public Transform missileSpawnPoint2;
+    public Transform bulletCapSpawnPoint;
     public float missileSpeed = 50;
     public GameObject missilePrefab;
     public GameObject rocketPrefab;                     // Prefab of the rocket.
     public float rocketSpeed = 20f;                      // The speed the rocket will fire at.
     public GameObject healEffect;
     float missileLifeTime = 1.5f;
+    float capsTime = 5f;
     private Vector3 shootPos;
     public static float posX;
     public static float posY;
@@ -37,6 +43,7 @@ public class PlayerMovement : NetworkBehaviour
     public GameObject JumpSound;
     public float ammo;
     private Animator anim;
+    public GameObject bulletCaps;
 
     [SyncVar]
     private float health = 100;
@@ -52,6 +59,9 @@ public class PlayerMovement : NetworkBehaviour
         shootPos = new Vector3(1,0,0);
         ammo = 10.0f;
         anim = GetComponent<Animator>();
+        healthBar = transform.FindChild("Canvas").FindChild("Health").GetComponent<Image>();
+        WeaponBar = transform.FindChild("Canvas").FindChild("Weapon").GetComponent<Image>();
+        WeaponBar.fillAmount = 0;
     }
 
     void Update()
@@ -234,6 +244,7 @@ public class PlayerMovement : NetworkBehaviour
             health = health + 1;
             if (health > 100)
                 health = 100;
+            healthBar.fillAmount = health / maxHealth;
         }
     }
 
@@ -243,8 +254,9 @@ public class PlayerMovement : NetworkBehaviour
             return;
 
         health -= damage;
+        healthBar.fillAmount = health / maxHealth;
 
-        if(health<=0)
+        if (health<=0)
         {
             health = 0;
             NetworkServer.Destroy(gameObject);
@@ -254,7 +266,10 @@ public class PlayerMovement : NetworkBehaviour
     [Command]
     public void CmdDoFire(float lifeTime)
     {
-        
+        GameObject caps;
+        caps = (GameObject)Instantiate(bulletCaps, bulletCapSpawnPoint.position, Quaternion.identity);
+        Destroy(caps, capsTime);
+        NetworkServer.Spawn(caps);
             
         if (weaponType == 0)
         {
