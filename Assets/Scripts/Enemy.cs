@@ -78,6 +78,7 @@ public class Enemy : NetworkBehaviour
             GameObject weaponPickup = (GameObject)Instantiate(weapons[random], transform.position, transform.rotation);
             weaponPickup.SendMessage("SetAmmo", level);
             NetworkServer.Spawn(weaponPickup);
+            Destroy(weaponPickup, 5.0f);
             
         }
         Destroy(gameObject);

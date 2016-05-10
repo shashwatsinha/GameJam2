@@ -140,7 +140,7 @@ public class PlayerMovement : NetworkBehaviour
             CmdDoFire(missileLifeTime);
         }
 
-        if (Input.GetKey(KeyCode.S))
+        /*if (Input.GetKey(KeyCode.S))
         {
             if (platformCollisionIgnored != null)
                 Physics2D.IgnoreCollision(platformCollisionIgnored.GetComponent<Collider2D>(), GetComponent<Collider2D>(), false);
@@ -152,7 +152,7 @@ public class PlayerMovement : NetworkBehaviour
                 platformCollisionIgnored = hit.transform;
                 Physics2D.IgnoreCollision(hit.transform.GetComponent<Collider2D>(), GetComponent<Collider2D>());
             }
-        }
+        }*/
 
         posX = transform.position.x;
         posY = transform.position.y;
@@ -332,7 +332,7 @@ public class PlayerMovement : NetworkBehaviour
                 NetworkServer.Spawn(missile);
             }
         }
-        WeaponBar.fillAmount =ammo / maxAmmo;
+       // WeaponBar.fillAmount =ammo / maxAmmo;
 
     }
 
