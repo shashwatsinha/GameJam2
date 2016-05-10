@@ -9,6 +9,8 @@ public class Enemy : NetworkBehaviour
     public GameObject[] weapons;
 
     private bool dead = false;          // Whether or not the enemy is dead.
+    private GameObject rightmostedge, leftmostedge;
+    private int level = 1;
 
     void Start()
     {
@@ -31,6 +33,22 @@ public class Enemy : NetworkBehaviour
         if (HP <= 0 && !dead)
             // ... call the death function.
             CmdDeath();
+    }
+
+    void SetHitpoints(int lvl)
+    {
+        HP = HP * (lvl);
+        level = lvl;
+    }
+
+    void SetLeftMovementRange(GameObject leftmost)
+    {
+        leftmostedge = leftmost;
+    }
+
+    void SetRightMovementRange(GameObject rightmost)
+    {
+        rightmostedge = rightmost;
     }
 
     public void Hurt()
@@ -58,6 +76,7 @@ public class Enemy : NetworkBehaviour
         {
             int random = Random.Range(0, 2);
             GameObject weaponPickup = (GameObject)Instantiate(weapons[random], transform.position, transform.rotation);
+            weaponPickup.SendMessage("SetAmmo", level);
             NetworkServer.Spawn(weaponPickup);
             
         }
