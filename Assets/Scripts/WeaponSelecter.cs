@@ -30,11 +30,5 @@ public class WeaponSelecter : NetworkBehaviour
             WeaponPickup.weaponCount--;
             Destroy(gameObject);
         }
-
-        if (collision.gameObject.tag == "Missile")
-        {
-            Destroy(collision.gameObject);
-            //Destroy(this.gameObject);
-        }
     }
 }
