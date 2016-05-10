@@ -46,9 +46,10 @@ public class PlayerMovement : NetworkBehaviour
     private Animator anim;
     public GameObject bulletCaps;
 
+
     [SyncVar]
     private float health = 100;
-    public float Health { get { return health; } }
+    public float Health;
 
 	// Use this for initialization
 	void Start ()
@@ -253,7 +254,7 @@ public class PlayerMovement : NetworkBehaviour
 
     public void TakeDamage(float damage)
     {
-        if (!identity.isLocalPlayer)
+        if (!isServer)
             return;
 
         health -= damage;
@@ -358,5 +359,6 @@ public class PlayerMovement : NetworkBehaviour
         }
 
         GUI.Label(new Rect(100, 100, 100, 100), health.ToString());
+        healthBar.fillAmount = health / maxHealth;
     }
 }
